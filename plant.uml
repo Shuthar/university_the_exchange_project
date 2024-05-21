@@ -1,0 +1,56 @@
+@startuml
+
+class User {
+  - username : String
+  - password : String
+  + getUsername() : String
+  + getPassword() : String
+  + setUsername(username : String) : void
+  + setPassword(password : String) : void
+}
+
+class Admin {
+  + addJob(jobMarket : JobMarket, job : Job) : void
+}
+
+class Client {
+  + viewJobs(jobMarket : JobMarket) : void
+}
+
+class Job {
+  - jobTitle : String
+  - jobDescription : String
+  - salary : int
+  - employer : String
+  + getJobTitle() : String
+  + getJobDescription() : String
+  + getSalary() : int
+  + getEmployer() : String
+  + setJobTitle(jobTitle : String) : void
+  + setJobDescription(jobDescription : String) : void
+  + setSalary(salary : int) : void
+  + setEmployer(employer : String) : void
+}
+
+class JobMarket {
+  - jobs : List<Job>
+  + addJob(job : Job) : void
+  + removeJob(job : Job) : void
+  + displayJobs() : void
+}
+
+class App {
+  - jobMarket : JobMarket
+  - currentUser : User
+  + start() : void
+}
+
+User <|-- Admin
+User <|-- Client
+App -- JobMarket
+App -- User
+JobMarket -- Job
+Admin -- JobMarket
+Client -- JobMarket
+
+@enduml
